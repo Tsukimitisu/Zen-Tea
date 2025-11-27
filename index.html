@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en" data-bs-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Zen Tea | Authentic Brews</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+      :root {
+        --tea-primary: #8D6E63;
+        --tea-dark: #4E342E;
+        --tea-accent: #D7CCC8;
+        --tea-cream: #FAF3E0;
+        --tea-text: #3E2723;
+        --font-main: 'Outfit', sans-serif;
+      }
+      
+      body {
+        font-family: var(--font-main);
+        color: var(--tea-text);
+        background-color: var(--tea-cream); 
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+    
+      [data-bs-theme="dark"] body { background-color: #2D2420; color: #EFEBE9; }
+      [data-bs-theme="dark"] .hero-bg { background: radial-gradient(circle at center, #3E322E 0%, #1a1412 100%); }
+      [data-bs-theme="dark"] .bg-tea-light { background-color: #3E322E; border-color: #5D4037; color: #D7CCC8; }
+      [data-bs-theme="dark"] .navbar { background-color: rgba(45, 36, 32, 0.95) !important; }
+      [data-bs-theme="dark"] .navbar-brand, [data-bs-theme="dark"] .nav-link, [data-bs-theme="dark"] .theme-btn { color: #D7CCC8 !important; border-color: #D7CCC8; }
+      [data-bs-theme="dark"] .text-body-secondary, [data-bs-theme="dark"] footer a { color: #A1887F !important; }
+
+
+      .navbar {
+        background-color: rgba(255, 255, 255, 0.90) !important;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 10px rgba(141, 110, 99, 0.1);
+        padding: 20px 0;
+      }
+      .navbar-brand { font-size: 1.6rem; font-weight: 700; color: var(--tea-primary) !important; letter-spacing: 2px; text-transform: uppercase; }
+      .nav-link { color: var(--tea-text) !important; font-weight: 400; letter-spacing: 1px; margin: 0 15px; text-transform: uppercase; position: relative; }
+      .nav-link::after { content: ''; display: block; width: 0; height: 1px; background: var(--tea-primary); transition: width .3s; }
+      .nav-link:hover::after { width: 100%; }
+      
+      .theme-btn { background: transparent; border: 1px solid var(--tea-primary); color: var(--tea-primary); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
+      .theme-btn:hover { background: var(--tea-primary); color: white; }
+
+
+      .hero-bg {
+        background: linear-gradient(180deg, var(--tea-cream) 0%, #ffffff 100%);
+        border-bottom-left-radius: 0; border-bottom-right-radius: 0; padding-bottom: 80px;
+      }
+      .btn-tea { background-color: var(--tea-primary); color: white; border-radius: 2px; padding: 12px 35px; border: 1px solid var(--tea-primary); text-decoration: none; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
+      .btn-tea:hover { background-color: transparent; color: var(--tea-primary); }
+
+
+      @keyframes float-1 { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
+      .floating-img-container { position: absolute; width: 200px; z-index: 10; opacity: 0.9; } /* Increased width slightly */
+      .float-left { left: 8%; top: 20%; animation: float-1 6s ease-in-out infinite; }
+      .float-right { right: 8%; bottom: 10%; animation: float-1 7s ease-in-out infinite; animation-delay: 1s; }
+      
+      
+      .floating-img-container img { 
+        width: 100%; 
+        
+        border-radius: 0; 
+        
+        filter: drop-shadow(0 15px 15px rgba(0,0,0,0.2)); 
+      }
+
+      
+      .flex-md-equal > * { flex: 1; }
+      .product-box { 
+        border-radius: 4px; transition: transform 0.4s, box-shadow 0.4s; border: none; cursor: pointer; height: 100%;
+        display: flex; flex-direction: column; 
+      }
+      .product-box:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.05); }
+      
+      .bg-tea-dark { background-color: var(--tea-primary); color: white; }
+      .bg-tea-dark h2, .bg-tea-dark p { color: white; }
+      .bg-tea-light { background-color: white; color: var(--tea-text); border: 1px solid #efebe9; }
+
+      
+      .img-wrapper {
+        width: 100%;
+        height: 350px;
+        display: flex;
+        align-items: flex-end; 
+        justify-content: center;
+        padding-bottom: 20px;
+        overflow: hidden;
+      }
+      
+      .product-img {
+        max-width: 90%; 
+        max-height: 100%; 
+        object-fit: contain; 
+        filter: drop-shadow(0 10px 10px rgba(0,0,0,0.2)); 
+        transition: transform 0.3s;
+      }
+      
+      .product-box:hover .product-img {
+        transform: scale(1.08); 
+      }
+      
+      footer { border-top: 1px solid #D7CCC8; margin-top: 80px; padding-top: 60px; padding-bottom: 40px; }
+      footer a { text-decoration: none; color: var(--tea-text); transition: 0.2s; }
+      footer a:hover { color: var(--tea-primary); }
+
+      @media (max-width: 768px) { .floating-img-container { display: none; } }
+    </style>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.html"><i class="bi bi-cup-straw"></i> Zen Tea</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+            <li class="nav-item"><a class="nav-link" href="locations.html">Locations</a></li>
+            <li class="nav-item"><a class="nav-link" href="story.html">Our Story</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          </ul>
+
+          <button class="theme-btn" id="themeToggle" title="Toggle Dark Mode">
+            <i class="bi bi-moon-fill" id="themeIcon"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+     
+      
+      <div class="position-relative overflow-hidden p-3 p-md-5 text-center hero-bg">
+        <div class="col-md-6 p-lg-5 mx-auto my-5" style="z-index: 20; position: relative;">
+          <h1 class="display-3 fw-bold mb-3" style="letter-spacing: -1px;">Brewed to Perfection</h1>
+          <h3 class="fw-light mb-4" style="font-size: 1.5rem; color: #8D6E63;">Premium tea leaves. Fresh organic milk. Artisan pearls.</h3>
+          <div class="d-flex gap-3 justify-content-center">
+             <a class="btn-tea" href="menu.html">View Menu</a>
+             <a class="btn-tea" style="background: transparent; color: var(--tea-primary);" href="locations.html">Order Pickup</a>
+          </div>
+        </div>
+       
+        
+        <div class="floating-img-container float-left">
+           <img src="images/tea leaf.png" alt="Tea Leaf">
+        </div>
+        <div class="floating-img-container float-right">
+           <img src="images/boba cup.png" alt="Boba Cup">
+        </div>
+      </div>
+
+      
+      <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
+        
+        
+        <a href="menu.html" class="text-decoration-none w-100 d-block">
+          <div class="bg-tea-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden product-box">
+            <div class="my-3 py-3">
+              <h2 class="display-6">Brown Sugar</h2>
+              <p class="lead fw-light">Caramelized perfection.</p>
+            </div>
+           
+            <div class="img-wrapper">
+                <img src="images/Brown_sugar_MT.png" alt="Brown Sugar Milk Tea" class="product-img">
+            </div>
+          </div>
+        </a>
+        
+        
+        <a href="menu.html" class="text-decoration-none w-100 d-block">
+          <div class="bg-tea-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden product-box">
+            <div class="my-3 p-3">
+              <h2 class="display-6">Classic Pearl</h2>
+              <p class="lead fw-light">The original taste.</p>
+            </div>
+            <div class="img-wrapper">
+                <img src="images/Classic MT.png" alt="Classic Milk Tea" class="product-img">
+            </div>
+          </div>
+        </a>
+      </div>
+
+      
+      <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
+        
+        <a href="menu.html" class="text-decoration-none w-100 d-block">
+          <div class="bg-tea-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden product-box">
+            <div class="my-3 p-3">
+              <h2 class="display-6">Kyoto Matcha</h2>
+              <p class="lead fw-light">Premium grade green tea.</p>
+            </div>
+            <div class="img-wrapper">
+                <img src="images/Match MT.png" alt="Matcha Milk Tea" class="product-img">
+            </div>
+          </div>
+        </a>
+
+        
+        <a href="menu.html" class="text-decoration-none w-100 d-block">
+          <div class="bg-tea-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden product-box">
+            <div class="my-3 py-3">
+              <h2 class="display-6">Taro Delight</h2>
+              <p class="lead fw-light">Real taro root blend.</p>
+            </div>
+            <div class="img-wrapper">
+                <img src="images/Taro MT.png" alt="Taro Milk Tea" class="product-img">
+            </div>
+          </div>
+        </a>
+      </div>
+
+    
+      <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
+        
+      
+        <a href="menu.html" class="text-decoration-none w-100 d-block">
+          <div class="bg-tea-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden product-box">
+            <div class="my-3 p-3">
+              <h2 class="display-6">Wintermelon</h2>
+              <p class="lead fw-light">Refreshing & Sweet.</p>
+            </div>
+            <div class="img-wrapper">
+                <img src="images/Winter Melon MT.png" alt="Wintermelon Milk Tea" class="product-img">
+            </div>
+          </div>
+        </a>
+
+     
+        <a href="menu.html" class="text-decoration-none w-100 d-block">
+          <div class="bg-tea-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden product-box">
+            <div class="my-3 py-3">
+              <h2 class="display-6">Passion Fruit</h2>
+              <p class="lead fw-light">Tropical green tea infusion.</p>
+            </div>
+            <div class="img-wrapper">
+                <img src="images/Fruit tea.png" alt="Fruit Tea" class="product-img">
+            </div>
+          </div>
+        </a>
+      </div>
+
+    </main>
+    
+    <!-- Footer -->
+    <footer class="container-fluid">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-4 mb-4">
+            <a href="index.html" class="d-flex align-items-center mb-3 text-decoration-none">
+              <span class="fs-4 fw-bold" style="color:var(--tea-primary); letter-spacing: 2px;">ZEN TEA</span>
+            </a>
+            <p class="text-body-secondary small">Est. 2023. Brewing happiness one cup at a time.</p>
+          </div>
+          <div class="col-6 col-md-2 mb-3">
+            <h5>Menu</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item"><a href="menu.html" class="nav-link p-0 text-body-secondary">Milk Tea</a></li>
+              <li class="nav-item"><a href="menu.html" class="nav-link p-0 text-body-secondary">Fruit Tea</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md-2 mb-3">
+            <h5>Company</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item"><a href="story.html" class="nav-link p-0 text-body-secondary">Our Story</a></li>
+              <li class="nav-item"><a href="locations.html" class="nav-link p-0 text-body-secondary">Locations</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md-2 mb-3">
+            <h5>Support</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item"><a href="contact.html" class="nav-link p-0 text-body-secondary">Contact Us</a></li>
+              <li class="nav-item"><a href="#" class="nav-link p-0 text-body-secondary">Terms</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      const toggleBtn = document.getElementById('themeToggle');
+      const icon = document.getElementById('themeIcon');
+      const html = document.documentElement;
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      html.setAttribute('data-bs-theme', savedTheme);
+      updateIcon(savedTheme);
+
+      toggleBtn.addEventListener('click', () => {
+        const currentTheme = html.getAttribute('data-bs-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        html.setAttribute('data-bs-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateIcon(newTheme);
+      });
+
+      function updateIcon(theme) {
+        if (theme === 'dark') {
+          icon.classList.remove('bi-moon-fill');
+          icon.classList.add('bi-cup-hot-fill'); 
+        } else {
+          icon.classList.remove('bi-cup-hot-fill');
+          icon.classList.add('bi-moon-fill');
+        }
+      }
+    </script>
+  </body>
+</html>
